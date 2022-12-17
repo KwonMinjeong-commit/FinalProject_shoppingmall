@@ -3,7 +3,7 @@ from .models import Product, Category, Manufacturer
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug' : ('name',)}
+    prepopulated_fields = {'slug' : ('title',)}
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
