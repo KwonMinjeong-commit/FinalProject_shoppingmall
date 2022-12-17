@@ -1,0 +1,75 @@
+body {
+    background-color: #90B5C7;
+    overflow-x:hidden;
+}
+/* 나브바 */
+#nav {
+    background-color: #e3bfd5;
+}
+.menu-bar {
+    cursor: pointer;
+}
+.offcanvas-backdrop {
+    background-color: #702b5f;
+    opacity: 0.3;
+}
+
+/* 상품 등록/수정 플로팅 버튼 */
+.floating_btn {
+  display:table;
+
+    height: 60px;
+    width: 60px;
+    position: fixed;
+    bottom: 60px;
+    text-decoration: none;
+    border-radius: 100px;
+    background-color: #e3bfd5;
+    color: #702b5f;
+    margin-left: 50px;
+    right:50px;
+}
+.floating_btn a {
+    padding-top: 4px;
+    text-align: center;
+    color: inherit;
+    text-decoration-line: none;
+    display:table-cell;
+    vertical-align:middle;
+}
+
+/* 제조사 버튼 */
+.link-light {
+    color: #000 !important;
+}
+.link-light:hover {
+    background-color: #fff;
+    color: #000 !important;
+    opacity: 0.9;
+}
+
+/* footer */
+.footer {
+    line-height: 300%;
+}
+
+
+
+
+/* 상품 */
+.card {
+    background-color: #90B5C7;
+    border: none;}
+
+#detail_img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    border-radius: .5%;
+}
+
+#list_img {
+    height: 28em;
+    object-fit: cover;
+    border-radius: 40% 20% 40% 10%;
+}

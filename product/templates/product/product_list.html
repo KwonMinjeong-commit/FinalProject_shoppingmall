@@ -1,0 +1,79 @@
+{% extends 'product/base.html' %}
+
+{% block main_area %}
+        <!-- Header -->
+            {% if manufacturer %}
+                <h1 class="text-center text-light">{{ manufacturer }}</h1>
+            {% endif %}
+            {% if category %}
+                <h1 class="text-center text-light">{{ category }}</h1>
+            {% endif %}
+            {% if color %}
+                <h1 class="text-center text-light">color: {{ color }}</h1>
+            {% endif %}
+            {% if type %}
+                <h1 class="text-center text-light">type: {{ type }}</h1>
+            {% endif %}
+
+        <div class="container mt-5">
+            <div class="text-center justify-content-center" align="center">
+                {% for category in categories %}
+                <span class="ml-5 mr-5">
+                    <a href="{{category.get_absolute_url}}" class="text-decoration-none">{{category}}</a>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+
+
+<!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                    {% for p in product_list %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <a href="{{ p.get_absolute_url }}">
+                                <img class="card-img-top" id="list_img" src="{{ p.image.url }}" alt="상품 이미지" />
+                            </a>
+                            <!-- Product details -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <a class="badge bg-light text-decoration-none link-light"
+                                       href="{{p.manufacturer.get_absolute_url}}">
+                                    {{ p.manufacturer | upper }}
+                                    </a>
+                                    <!-- Product name -->
+                                    <h5 class="fw-bolder">
+                                        <a href="{{ p.get_absolute_url }}" class="text-decoration-none">{{ p.title }}</a>
+                                    </h5>
+                                    <!-- Product hook_text -->
+                                    <p>{{ p.hook_text }}</p>
+                                    <!-- Product price -->
+                                    <p>{{ p.price }}원</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- 등록 버튼 -->
+        {% if user.is_authenticated %}
+           {% if user.is_superuser or user.is_staff %}
+            <div class="floating_btn">
+                <a href="/product/register_product">
+                    <h3><i class="fa-solid fa-plus"></i></h3>
+                </a>
+            </div>
+            {% endif %}
+        {% endif %}
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,143 @@
+{% extends 'product/base.html' %}
+
+{% block head_title %}
+    {{product.title}} | 쇼핑몰명
+{% endblock %}
+
+{% block main_area %}
+    <!-- Product section-->
+    <section class="py-2">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6">
+                    <img class="card-img-top mb-5 mb-md-0" id= "detail_img" src="{{ product.image.url }}" alt="상품 이미지" />
+                </div>
+                <div class="col-md-6">
+                    {% if product.manufacturer %}
+                     <a class="badge bg-light text-decoration-none link-light"
+                        href="{{product.manufacturer.get_absolute_url}}">
+                        {{ product.manufacturer | upper }}
+                     </a>
+                    {% endif %}
+                    {% if product.category %}
+                    <div class="small mb-1">{{ product.category }}</div>
+                    {% endif %}
+                    <h1 class="display-5 fw-bolder">{{ product.title }}</h1>
+                    <div class="fs-5 mb-5">
+                        <span>{{ product.price }}</span>
+                    </div>
+                    <p class="lead">{{ product.hook_text }}</p>
+                    <!-- 기종 셀렉트 박스 -->
+                    {% if product.types.exists %}
+                    <h5>Type</h5>
+                    <div class="selectbox mb-3">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option selected>선택하세요.</option>
+                            {% for type in product.types.all %}
+                            <option value="{{type}}">
+                                {{type}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endif %}
+                     <!-- 색 셀렉트 박스 -->
+                    {% if product.colors.exists %}
+                    <h5>Color</h5>
+                    <div class="selectbox mb-3">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                            onchange="changeSelectBox(this.value)">
+                            <option selected>선택하세요.</option>
+                            {% for color in product.colors.all %}
+                            <option value="{{color}}">
+                                {{color}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <script>
+                        function changeSelectBox(e) {
+                            if (e != NULL)
+                                e.value = 'e.value = e의 다른 상품 보러가기'
+                        }
+                    </script>
+
+
+                    {% endif %}
+                    <div class="d-flex">
+                        <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                        <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <i class="bi-cart-fill me-1"></i>
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+<!-- Comments section-->
+    <div class="container">
+        <section class="mb-5">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <!-- Comment form-->
+                    <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+                    <!-- Comment with nested comments-->
+                    <div class="d-flex mb-4">
+                        <!-- Parent comment-->
+                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                        <div class="ms-3">
+                            <div class="fw-bold">Commenter Name</div>
+                            If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
+                            <!-- Child comment 1-->
+                            <div class="d-flex mt-4">
+                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                <div class="ms-3">
+                                    <div class="fw-bold">Commenter Name</div>
+                                    And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
+                                </div>
+                            </div>
+                            <!-- Child comment 2-->
+                            <div class="d-flex mt-4">
+                                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                <div class="ms-3">
+                                    <div class="fw-bold">Commenter Name</div>
+                                    When you put money directly to a problem, it makes a good headline.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single comment-->
+                    <div class="d-flex">
+                        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                        <div class="ms-3">
+                            <div class="fw-bold">Commenter Name</div>
+                            When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 수정 버튼 -->
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or user.is_staff %}
+            <div class="floating_btn">
+                <a href="/product/update_product/{{ product.pk }}">
+                    <h3><i class="fa-solid fa-pen-to-square"></i></h3>
+                </a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -36,8 +36,11 @@ class Product(models.Model):
     hook_text = models.CharField(max_length=100, blank=True)  # 간단 설명
     content = models.TextField(null=True)    # 상품 설명
     price = models.IntegerField()  # 가격 (숫자형식)
+    image = models.ImageField(upload_to='product/images/%Y/%m/%d/', blank=True)     # 이미지
 
 
+    manufacturer = models.ForeignKey(Manufacturer, null=True, on_delete=models.SET_NULL)  # 제조사
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)  # 카테고리 models -> admin
 
     def __str__(self):
         return f'[{self.pk}] {self.title} :: {self.price}원 ㆍㆍㆍ {self.manufacturer}'
