@@ -17,7 +17,7 @@ class ColorAdmin(admin.ModelAdmin):
 class TypeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('type',)}
 
-admin.site.register(Product)
+admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Manufacturer, ManufacturerAdmin)
 admin.site.register(Color, ColorAdmin)

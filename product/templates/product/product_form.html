@@ -1,5 +1,6 @@
 {% extends 'product/base.html' %}
 {% load crispy_forms_tags %}
+
 {% block title %} Product Registration {% endblock %}
 
 {% block main_area %}
@@ -11,14 +12,6 @@
             {% csrf_token %}
                 <table>
                     {{ form | crispy}}
-                    <tr>
-                        <th><label for="id_colors_str">Colors: </label></th>
-                        <td><input type="text" name="colors_str" id="id_colors_str"></td>
-                    </tr>
-                    <tr>
-                        <th><label for="id_types_str">Types: </label></th>
-                        <td><input type="text" name="colors_str" id="id_types_str"></td>
-                    </tr>
                 </table>
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
         </form>

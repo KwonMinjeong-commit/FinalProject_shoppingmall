@@ -20,7 +20,7 @@ class ProductUpdate(LoginRequiredMixin, UpdateView):
 
 class ProductCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Product
-    fields = ['title', 'hook_text', 'content', 'price', 'image', 'manufacturer', 'category']
+    fields = ['title', 'slug', 'hook_text', 'content', 'price', 'image', 'manufacturer', 'category', 'colors', 'types']
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -29,9 +29,10 @@ class ProductCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         current_user = self.request.user
         if current_user.is_authenticated and (current_user.is_staff or current_user.is_superuser):  # 스태프나 슈퍼 유저만 등록 가능
             form.instance.author = current_user
-            response = super(ProductCreate, self).form_valid(form)
+            return super(ProductCreate, self).form_valid(form)
 
-            return response
+        else:
+            return redirect('/product/')
 
 class ProductList(ListView):
     model = Product

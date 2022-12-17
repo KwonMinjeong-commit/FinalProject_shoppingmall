@@ -51,6 +51,8 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=30)  # 상품명
+    slug = models.SlugField(max_length=200, null=True, unique=True, allow_unicode=True)
+
     hook_text = models.CharField(max_length=100, blank=True)  # 간단 설명
     content = models.TextField(null=True)    # 상품 설명
     price = models.IntegerField()  # 가격 (숫자형식)
@@ -63,7 +65,6 @@ class Product(models.Model):
     colors = models.ManyToManyField(Color, blank=True)
     types = models.ManyToManyField(Type, blank=True)
 
-    slug = models.SlugField(max_length=200, null=True, unique=True, allow_unicode=True)
 
     def __str__(self):
         return f'[{self.pk}] {self.title} :: {self.price}원 ㆍㆍㆍ {self.manufacturer}'
