@@ -19,7 +19,8 @@
             <div class="text-center justify-content-center" align="center">
                 {% for category in categories %}
                 <span class="ml-5 mr-5">
-                    <a href="{{category.get_absolute_url}}" class="text-decoration-none">{{category}}</a>
+                    <a href="{{category.get_absolute_url}}" class="text-decoration-none">{{category}}
+                        ({{category.product_set.count}})</a>
                 </span>
                 {% endfor %}
             </div>
@@ -32,7 +33,7 @@
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
                     {% for p in product_list %}
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100" id="product-{{p.pk}}">
                             <!-- Product image-->
                             <a href="{{ p.get_absolute_url }}">
                                 <img class="card-img-top" id="list_img" src="{{ p.image.url }}" alt="상품 이미지" />
