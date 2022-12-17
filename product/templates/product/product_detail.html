@@ -9,10 +9,10 @@
     <section class="py-2">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <img class="card-img-top mb-5 mb-md-0" id= "detail_img" src="{{ product.image.url }}" alt="상품 이미지" />
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     {% if product.manufacturer %}
                      <a class="badge bg-light text-decoration-none link-light"
                         href="{{product.manufacturer.get_absolute_url}}">
@@ -62,7 +62,6 @@
                         }
                     </script>
 
-
                     {% endif %}
                     <div class="d-flex">
                         <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
@@ -72,11 +71,17 @@
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
+    <div class="container mb-5">
+        <hr>
+        <span class="ml-3">
+          {{ product.content }}
+        </span>
+
+    </div>
 <!-- Comments section-->
     <div class="container">
         <section class="mb-5">

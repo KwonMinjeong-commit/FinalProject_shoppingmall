@@ -25,7 +25,7 @@
             </div>
         </div>
 
-
+{% if product_list.exists %}
 <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -60,6 +60,9 @@
                 </div>
             </div>
         </section>
+{% else %}
+    <h3>아직 게시물이 없습니다.</h3>
+{% endif %}
 
         <!-- 등록 버튼 -->
         {% if user.is_authenticated %}
