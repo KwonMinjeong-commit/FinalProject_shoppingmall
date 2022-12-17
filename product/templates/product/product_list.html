@@ -2,18 +2,21 @@
 
 {% block main_area %}
         <!-- Header -->
+        <header class="container mt-5">
             {% if manufacturer %}
-                <h1 class="text-center text-light">{{ manufacturer }}</h1>
+                <h1 class="text-center text-light">제조사 [ {{ manufacturer }} ]</h1>
             {% endif %}
             {% if category %}
-                <h1 class="text-center text-light">{{ category }}</h1>
+                <h1 class="text-center text-light">카테고리 [ {{ category }} ]</h1>
             {% endif %}
             {% if color %}
-                <h1 class="text-center text-light">color: {{ color }}</h1>
+                <h1 class="text-center text-light">색 [ {{ color }} ]</h1>
             {% endif %}
             {% if type %}
-                <h1 class="text-center text-light">type: {{ type }}</h1>
+                <h1 class="text-center text-light">기종 [ {{ type }} ]</h1>
             {% endif %}
+        </header>
+
 
         <div class="container mt-5">
             <div class="text-center justify-content-center" align="center">
