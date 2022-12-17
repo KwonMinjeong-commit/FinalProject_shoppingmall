@@ -45,8 +45,7 @@
                     {% if product.colors.exists %}
                     <h5>Color</h5>
                     <div class="selectbox mb-3">
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                            onchange="changeSelectBox(this.value)">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                             <option selected>선택하세요.</option>
                             {% for color in product.colors.all %}
                             <option value="{{color}}">
@@ -55,12 +54,6 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <script>
-                        function changeSelectBox(e) {
-                            if (e != NULL)
-                                e.value = 'e.value = e의 다른 상품 보러가기'
-                        }
-                    </script>
 
                     {% endif %}
                     <div class="d-flex">
