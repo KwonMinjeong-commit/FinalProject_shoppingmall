@@ -1,8 +1,38 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Product, Category, Manufacturer, Color, Type
+from django.core.exceptions import PermissionDenied
+from django.utils.text import slugify
 
 # Create your views here.
+class ProductUpdate(LoginRequiredMixin, UpdateView):
+    model = Product
+    fields = ['title', 'hook_text', 'content', 'price', 'image', 'manufacturer', 'category', 'colors', 'types']
+
+    template_name = 'product/product_update_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and (request.user.is_staff or request.user.is_superuser):  # 스태프나 슈퍼 유저만 수정 가능
+            return super(ProductUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
+class ProductCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = Product
+    fields = ['title', 'hook_text', 'content', 'price', 'image', 'manufacturer', 'category']
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+
+    def form_valid(self, form):
+        current_user = self.request.user
+        if current_user.is_authenticated and (current_user.is_staff or current_user.is_superuser):  # 스태프나 슈퍼 유저만 등록 가능
+            form.instance.author = current_user
+            response = super(ProductCreate, self).form_valid(form)
+
+            return response
+
 class ProductList(ListView):
     model = Product
     ordering = '-pk'
