@@ -9,8 +9,9 @@ body {
 .menu-bar {
     cursor: pointer;
 }
-.nav-brand {
+.logo {
     font-weight: bold;
+    font-family: 'DM Serif Display', serif;
 }
 /* 서치바 */
 
