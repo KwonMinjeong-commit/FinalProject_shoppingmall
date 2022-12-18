@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'product/base.html' %}
 {% load crispy_forms_tags %}
 
 {% block head_title %}
@@ -6,13 +6,15 @@
 {% endblock %}
 
 {% block main_area %}
-    <h1>Edit Comment</h1>
-    <hr>
-    <form method="post" enctype="multipart/form-data">     <!-- 보통 form은 table 구조 주로 사용 -->
-        {% csrf_token %}
+    <div class="container mt-4">
+        <h1>Edit Comment</h1>
+        <hr>
+        <form method="post" enctype="multipart/form-data">     <!-- 보통 form은 table 구조 주로 사용 -->
+            {% csrf_token %}
 
-            {{form | crispy}}
+                {{form | crispy}}
 
-        <button type="submit" class="btn btn-primary float-right">Submit</button>
-    </form>
+            <button type="submit" class="btn btn-primary float-right">Submit</button>
+        </form>
+    </div>
 {% endblock %}

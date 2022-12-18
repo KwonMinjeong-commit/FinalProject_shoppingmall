@@ -7,8 +7,8 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.text import slugify
 
-
 # Create your views here.
+
 
 class ProductUpdate(LoginRequiredMixin, UpdateView):
     model = Product
@@ -24,7 +24,7 @@ class ProductUpdate(LoginRequiredMixin, UpdateView):
 
 class ProductCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Product
-    fields = ['title', 'slug', 'hook_text', 'content', 'price', 'image', 'manufacturer', 'category', 'colors', 'types']
+    fields = ['title', 'hook_text', 'content', 'price', 'image', 'manufacturer', 'category', 'colors', 'types']
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -58,6 +58,16 @@ class ProductDetail(DetailView):
         context['comment_form'] = CommentForm
         return context
 
+
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user == self.get_object().author:
+            return super(CommentUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
 
 def category_page(request, slug):
     category = Category.objects.get(slug=slug)
