@@ -38,6 +38,7 @@
                 <div class="col-md-6">
                     <img class="card-img-top mb-5 mb-md-0" id= "detail_img" src="{{ product.image.url }}" alt="상품 이미지" />
                 </div>
+
                 <div class="col-md-6">
                     <div class="product-info">
                             {% if product.manufacturer %}
@@ -68,11 +69,23 @@
                             </select>
                         </div>
                         {% endif %}
+
+                        <div class="container mb-4">
+                            {% if product.types.exists %}
+                                <i class="fas fa-regular fa-mobile"  style="color: white;"></i>
+                                {% for type in product.types.all %}
+                                    <a href="{{type.get_absolute_url}}" class="text-decoration-none text-light">
+                                        <span> {{type}}</span>/
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
                          <!-- 색 셀렉트 박스 -->
                         {% if product.colors.exists %}
                         <h5 style="color: #c95020;">Color</h5>
                         <div class="selectbox mb-3">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example" onchange="selectBoxChange(this.value);">
                                 <option selected>선택하세요.</option>
                                 {% for color in product.colors.all %}
                                 <option value="{{color}}">
@@ -81,9 +94,18 @@
                                 {% endfor %}
                             </select>
                         </div>
-                    </div>
-                    {% endif %}
+                        {% endif %}
 
+                        <div class="container mb-4">
+                            {% if product.colors.exists %}
+                                <i class="fas fa-regular fa-palette" style="color: white;"></i>
+                                {% for color in product.colors.all %}
+                                    <a href="{{color.get_absolute_url}}" class="text-decoration-none text-light">
+                                        <span> {{color}}</span>/
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
 
                     <div class="d-flex">
                         <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />

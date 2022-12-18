@@ -31,7 +31,7 @@
         <!-- Header -->
         <header class="container mt-5">
             {% if search_info %}
-                <h1 class="text-muted">{{ search_info }}</h1>
+                <h1 class="text-light categories">{{ search_info }}</h1>
             {% endif %}
             {% if manufacturer %}
                 <h1 class="text-center text-light categories">제조사 [ {{ manufacturer }} ]</h1>
@@ -89,7 +89,7 @@
             </div>
         </section>
 {% else %}
-    <h3>아직 게시물이 없습니다.</h3>
+    <h3 class="text-center text-light mt-5">아직 게시물이 없습니다.</h3>
 {% endif %}
 
 
