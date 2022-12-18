@@ -1,75 +1,77 @@
 {% load socialaccount %}
 {% load static %}
 
-  <div class="offcanvas offcanvas-start" id="demo">
-    <div class="offcanvas-header">
-      <button type="button" class="btn-close ml-auto" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body ml-2">
-      <h3 class="offcanvas-title mb-4 logo">almost 9</h3>
-      <form class="mx-auto input-group mb-4">
-        {% csrf_token %}
-        <mx-auto>
+<div class="navTotal">
+    <div class="offcanvas offcanvas-start" id="demo">
+      <div class="offcanvas-header">
+        <button type="button" class="btn-close ml-auto" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body ml-2">
+        <a href="/" class="text-decoration-none"><h3 class="offcanvas-title mb-3 logo">almost9</h3></a>
+        <form class="input-group mb-4 offcanvas-content">
+          {% csrf_token %}
           <input name="search" type="text" class="form-control" placeholder="search" id="search-input"
                  aria-label="search" aria-describedby="button-addon2">
-        </mx-auto>
-        <button class="btn btn-dark" type="submit" onclick="searchPost();">검색</button>
-      </form>
-      <a class="nav-link active mb-4" aria-current="page" href="/">HOME</a>
-      <a class="nav-link mb-4" href="/about_us/">ABOUT</a>
-      <a class="nav-link mb-4" href="/product/">SHOP</a>
+
+          <button class="btn searchBtn" type="submit" onclick="searchPost();">검색</button>
+        </form>
+        <a class="nav-link active ml-2 mb-4 offcanvas-content" aria-current="page" href="/">HOME</a>
+        <a class="nav-link ml-2 mb-4 offcanvas-content" href="/about_us/">ABOUT</a>
+        <a class="nav-link ml-2 mb-4 offcanvas-content" href="/product/">SHOP</a>
+      </div>
     </div>
-  </div>
 
-  <script>
-        function searchPost() {
-            let searchValue = document.getElementById('search-input').value.trim();
-            if(searchValue.length > 1) {
-                location.href = "/product/search/" + searchValue + "/";
-            }
-            else {
-                alert('검색어('+ searchValue +')가 너무 짧아요.');
-            }
-        };
-        document.getElementById('search-input').addEventListener('keyup', function(event){
-            if (event.key === 'Enter') {
-                searchPost();
-            }
-        });
-    </script>
+    <script>
+          function searchPost() {
+              let searchValue = document.getElementById('search-input').value.trim();
+              if(searchValue.length > 1) {
+                  location.href = "/product/search/" + searchValue + "/";
+              }
+              else {
+                  alert('검색어('+ searchValue +')가 너무 짧아요.');
+              }
+          };
+          document.getElementById('search-input').addEventListener('keyup', function(event){
+              if (event.key === 'Enter') {
+                  searchPost();
+              }
+          });
+      </script>
 
 
-  <div class="row py-3" id="nav">
-    <div class="col">
-      <h3 class="menu-bar mt-2 ml-5" data-bs-toggle="offcanvas" data-bs-target="#demo">☰</h3>
-    </div>
-    <div class="col text-center">
-      <a href="/" class="navbar-brand">
-        <h1 class="nav-brand logo"> almost 9</h1>
-      </a>
-    </div>
-    <div class="col">
-      <ul class="nav justify-content-space-between nav-menu mt-2 mr-5 float-right">
-        {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
+    <div class="row py-3" id="nav">
+      <div class="col">
+        <h3 class="menu-bar mt-2 ml-5" data-bs-toggle="offcanvas" data-bs-target="#demo">☰</h3>
+      </div>
+      <div class="col text-center">
+        <a href="/" class="navbar-brand">
+          <h1 class="nav-brand logo">almost 9</h1>
+        </a>
+      </div>
+      <div class="col">
+        <ul class="nav justify-content-space-between nav-menu mt-2 mr-5 float-right">
+          {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
 
-          </li>
-          {% else %}
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link active" role="button" aria-current="page" data-toggle="modal" data-target="#loginModal">
+                <i class="fa-solid fa-user"></i>
+              </a>
+            </li>
+            {% endif %}
           <li class="nav-item">
-            <a class="nav-link active" role="button" aria-current="page" data-toggle="modal" data-target="#loginModal">
-              <i class="fa-solid fa-user"></i>
+            <a class="nav-link active" aria-current="page" href="#">
+              <i class="fa-solid fa-bag-shopping"></i>
             </a>
           </li>
-          {% endif %}
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">
-            <i class="fa-solid fa-bag-shopping"></i>
-          </a>
-        </li>
-      </ul>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
+
 
 
 <!-- Modal -->

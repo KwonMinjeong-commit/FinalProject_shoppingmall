@@ -1,10 +1,13 @@
 body {
-    background-color: #15182e;
+    background-color: #111530;
     overflow-x:hidden;
 }
 /* 나브바 */
+.navTotal {
+    color: #111530;
+}
 #nav {
-    background-color: #fe9a06;
+    background-color: #c95020;
 }
 .menu-bar {
     cursor: pointer;
@@ -12,9 +15,29 @@ body {
 .logo {
     font-weight: bold;
     font-family: 'DM Serif Display', serif;
+    color: #111530;
 }
-/* 서치바 */
+.offcanvas-content {
+    font-weight: bold;
+    font-family: 'Noto Serif KR', serif;
+}
+.nav-link {
+    color: #111530;
+}
+.nav-link:hover {
+    color: #111530;
+    opacity: .8;
+}
 
+/* 서치바 */
+.searchBtn {
+    background-color: #111530;
+    color: white;
+}
+.searchBtn:hover , .searchBtn:active {
+    background-color: rgba(17, 21, 48, 0.9);
+    color: white;
+}
 
 /* 상품 등록/수정 플로팅 버튼 */
 .floating_btn {
@@ -43,7 +66,7 @@ body {
 /* footer */
 footer {
     fixed: none;
-    background-color: #15182e;
+    background-color: #111530;
     line-height: 200%;
 }
 
