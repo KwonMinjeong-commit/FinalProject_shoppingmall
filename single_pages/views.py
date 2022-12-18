@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from product.models import Product
+from product.models import Product, Comment
 
 # Create your views here.
 def landing(request):
@@ -10,3 +10,9 @@ def landing(request):
 
 def about_us(request):
     return render(request, 'single_pages/about_us.html')
+
+def mypage(request):
+    comment_lists = Comment.objects.all()
+    return render(request, 'single_pages/mypage.html', {
+        'comment_lists': comment_lists
+    })

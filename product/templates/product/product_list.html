@@ -51,18 +51,18 @@
                             <!-- Product details -->
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <a class="badge bg-light text-decoration-none link-light"
+                                    <a class="badge bg-light text-decoration-none link-light mb-2"
                                        href="{{p.manufacturer.get_absolute_url}}" style="color: #c95020;">
                                     {{ p.manufacturer | upper }}
                                     </a>
                                     <!-- Product name -->
                                     <h5 class="fw-bolder">
-                                        <a href="{{ p.get_absolute_url }}" class="text-decoration-none">{{ p.title }}</a>
+                                        <a href="{{ p.get_absolute_url }}" class="text-decoration-none mb-2">{{ p.title }}</a>
                                     </h5>
                                     <!-- Product hook_text -->
-                                    <p>{{ p.hook_text }}</p>
+                                    <p class="mb-2">{{ p.hook_text }}</p>
                                     <!-- Product price -->
-                                    <p>{{ p.price }}원</p>
+                                    <p class="mb-2">{{ p.price }}원</p>
                                 </div>
                             </div>
                         </div>

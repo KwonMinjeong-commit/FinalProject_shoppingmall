@@ -17,7 +17,7 @@ body {
     font-family: 'DM Serif Display', serif;
     color: #111530;
 }
-.offcanvas-content {
+.nav-menu {
     font-weight: bold;
     font-family: 'Noto Serif KR', serif;
 }
@@ -30,12 +30,12 @@ body {
 }
 
 /* 서치바 */
-.searchBtn {
+.searchBtn, .commentBtn {
     background-color: #111530;
     color: white;
 }
-.searchBtn:hover , .searchBtn:active {
-    background-color: rgba(17, 21, 48, 0.9);
+.searchBtn:hover , .searchBtn:active, .commentBtn:hover {
+    background-color: rgba(17, 21, 48, 0.8);
     color: white;
 }
 
@@ -68,6 +68,11 @@ footer {
     fixed: none;
     background-color: #111530;
     line-height: 200%;
+    font-family: 'Noto Serif KR', serif;
+
 }
 
+footer p {
+    font-size: 13px;
+}
 

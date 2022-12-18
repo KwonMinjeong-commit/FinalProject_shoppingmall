@@ -9,52 +9,54 @@
 {% block main_area %}
     <!-- Product section-->
     <section class="py-2">
-        <div class="container px-4 px-lg-5 my-5">
+        <div class="container px-4 px-lg-5 my-3">
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <img class="card-img-top mb-5 mb-md-0" id= "detail_img" src="{{ product.image.url }}" alt="상품 이미지" />
                 </div>
-                <div class="col-md-5">
-                    {% if product.manufacturer %}
-                     <a class="badge bg-light text-decoration-none link-light"
-                        href="{{product.manufacturer.get_absolute_url}}">
-                        {{ product.manufacturer | upper }}
-                     </a>
-                    {% endif %}
-                    {% if product.category %}
-                    <div class="small mb-1">{{ product.category }}</div>
-                    {% endif %}
-                    <h1 class="display-5 fw-bolder">{{ product.title }}</h1>
-                    <div class="fs-5 mb-5">
-                        <span>{{ product.price }}</span>
-                    </div>
-                    <p class="lead">{{ product.hook_text }}</p>
-                    <!-- 기종 셀렉트 박스 -->
-                    {% if product.types.exists %}
-                    <h5>Type</h5>
-                    <div class="selectbox mb-3">
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                            <option selected>선택하세요.</option>
-                            {% for type in product.types.all %}
-                            <option value="{{type}}">
-                                {{type}}
-                            </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    {% endif %}
-                     <!-- 색 셀렉트 박스 -->
-                    {% if product.colors.exists %}
-                    <h5>Color</h5>
-                    <div class="selectbox mb-3">
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                            <option selected>선택하세요.</option>
-                            {% for color in product.colors.all %}
-                            <option value="{{color}}">
-                                {{color}}
-                            </option>
-                            {% endfor %}
-                        </select>
+                <div class="col-md-6">
+                    <div class="product-info">
+                            {% if product.manufacturer %}
+                         <a class="badge bg-light text-decoration-none link-light mb-2"
+                            href="{{product.manufacturer.get_absolute_url}}">
+                            {{ product.manufacturer | upper }}
+                         </a>
+                        {% endif %}
+                        {% if product.category %}
+                        <p><a href="{{product.category.get_absolute_url}}" class="text-decoration-none categories mb-10" >{{ product.category }}</a></p>
+                        {% endif %}
+                        <h1 class="display-5 fw-bolder mb-10" style="color: #c95020;">{{ product.title }}</h1>
+                        <p class="lead text-light mb-5">{{ product.hook_text }}</p>
+                        <p class="text-light mb-5">{{ product.price }}원</p>
+
+
+                        <!-- 기종 셀렉트 박스 -->
+                        {% if product.types.exists %}
+                        <h5 style="color: #c95020;">Type</h5>
+                        <div class="selectbox mb-3">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>선택하세요.</option>
+                                {% for type in product.types.all %}
+                                <option value="{{type}}">
+                                    {{type}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {% endif %}
+                         <!-- 색 셀렉트 박스 -->
+                        {% if product.colors.exists %}
+                        <h5 style="color: #c95020;">Color</h5>
+                        <div class="selectbox mb-3">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>선택하세요.</option>
+                                {% for color in product.colors.all %}
+                                <option value="{{color}}">
+                                    {{color}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
 
                     {% endif %}
@@ -70,13 +72,13 @@
         </div>
     </section>
 
-    <div class="container mb-5">
-        <hr>
-        <span class="ml-3">
+    <div class="container">
+        <hr style="background: #fff; height: 1px; border: 0;">
+        <p class="ml-3 my-5 text-light" style="font-family: 'Noto Serif KR', serif;">
           {{ product.content }}
-        </span>
-
+        </p>
     </div>
+
 <!-- Comments section-->
     <section class="mb-5">
         <div class="container">
@@ -89,7 +91,7 @@
                             <div class="form-group">
                                 {{comment_form | crispy}}   <!-- views.py에서의 comment_form 전달 받음 -->
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary commentBtn">Submit</button>
                         </form>
                         {% else %}  <!-- 댓글 작성시 로그인 해야함 -->
                             <a role="button" class="btn btn-dark btn-block btn-sm"
