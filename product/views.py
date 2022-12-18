@@ -46,7 +46,9 @@ class ProductList(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductList,self).get_context_data()
         context['categories'] = Category.objects.all()      # 카테고리의 모든 정보 전달
-        context['no_category_post_count'] = Product.objects.filter(category=None).count
+        context['no_category_product_count'] = Product.objects.filter(category=None).count
+        context['manufacturers'] = Manufacturer.objects.all()  # 제조사의 모든 정보 전달
+        context['no_manufacturer_product_count'] = Product.objects.filter(category=None).count
         return context
 
 class ProductSearch(ProductList): # ListView 상속 -> post_list, post_list.html 자동 연결
@@ -68,8 +70,10 @@ class ProductDetail(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductDetail,self).get_context_data()
-        context['categories'] = Category.objects.all()      # 카테고리의 모든 정보 전달
-        context['no_category_post_count'] = Product.objects.filter(category=None).count
+        context['categories'] = Category.objects.all()  # 카테고리의 모든 정보 전달
+        context['no_category_product_count'] = Product.objects.filter(category=None).count
+        context['manufacturers'] = Manufacturer.objects.all()  # 제조사의 모든 정보 전달
+        context['no_manufacturer_product_count'] = Product.objects.filter(category=None).count
         context['comment_form'] = CommentForm
         return context
 
@@ -92,7 +96,7 @@ def category_page(request, slug):
         'category': category,  # 'category': 템플릿 안의 변수명
         'product_list': product_list,
         'categories': Category.objects.all(),  # 사이드바 정상적 출력을 위해
-        'no_category_post_count': Product.objects.filter(category=None).count  # 사이드바 정상적 출력을 위해
+        'no_category_product_count': Product.objects.filter(category=None).count  # 사이드바 정상적 출력을 위해
     })
 
 def manufacturer_page(request, slug):
@@ -102,8 +106,8 @@ def manufacturer_page(request, slug):
     return render(request, 'product/product_list.html', {
         'manufacturer': manufacturer,  # 'category': 템플릿 안의 변수명
         'product_list': product_list,
-        'categories': Category.objects.all(),  # 사이드바 정상적 출력을 위해
-        'no_category_post_count': Product.objects.filter(category=None).count  # 사이드바 정상적 출력을 위해
+        'manufacturers': Manufacturer.objects.all(),  # 사이드바 정상적 출력을 위해
+        'no_manufacturer_product_count': Product.objects.filter(category=None).count  # 사이드바 정상적 출력을 위해
     })
 
 def color_page(request, slug):
@@ -112,8 +116,8 @@ def color_page(request, slug):
     return render(request, 'product/product_list.html', {
         'color' : color,
         'product_list' : product_list,
-        'categories': Category.objects.all(),  # 사이드바 정상적 출력을 위해
-        'no_category_post_count': Product.objects.filter(category=None).count  # 사이드바 정상적 출력을 위해
+        'colors': Color.objects.all(),  # 사이드바 정상적 출력을 위해
+        'no_colors_product_count': Product.objects.filter(category=None).count  # 사이드바 정상적 출력을 위해
     })
 
 def type_page(request, slug):
@@ -122,8 +126,8 @@ def type_page(request, slug):
     return render(request, 'product/product_list.html', {
         'type' : type,
         'product_list' : product_list,
-        'categories': Category.objects.all(),  # 사이드바 정상적 출력을 위해
-        'no_category_post_count': Product.objects.filter(category=None).count  # 사이드바 정상적 출력을 위해
+        'types': Type.objects.all(),  # 사이드바 정상적 출력을 위해
+        'no_types_product_count': Product.objects.filter(category=None).count  # 사이드바 정상적 출력을 위해
     })
 
 def new_comment(request,pk):

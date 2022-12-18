@@ -39,29 +39,7 @@ body {
     color: white;
 }
 
-/* 상품 등록/수정 플로팅 버튼 */
-.floating_btn {
-  display:table;
 
-    height: 60px;
-    width: 60px;
-    position: fixed;
-    bottom: 60px;
-    text-decoration: none;
-    border-radius: 100px;
-    background-color: #e3bfd5;
-    color: #702b5f;
-    margin-left: 50px;
-    right:50px;
-}
-.floating_btn a {
-    padding-top: 4px;
-    text-align: center;
-    color: inherit;
-    text-decoration-line: none;
-    display:table-cell;
-    vertical-align:middle;
-}
 
 /* footer */
 footer {

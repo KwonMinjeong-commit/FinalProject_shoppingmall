@@ -5,14 +5,17 @@
 
 {% block main_area %}
     <div class="container mt-4">
-        <h1>Edit Product</h1>
+        <h1 class="text-light">Edit Product</h1>
         <hr>
 
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <table>
-                {{ form | crispy}}
-            </table>
+            <div class="text-light">
+                <table>
+                    {{ form | crispy}}
+
+                </table>
+            </div>
             <button type="submit" class="btn btn-primary float-right">Submit</button>
         </form>
     </div>

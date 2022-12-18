@@ -5,28 +5,9 @@
 {% endblock %}
 
 {% block main_area %}
-        <!-- Header -->
-        <header class="container mt-5">
-            {% if search_info %}
-                <h1 class="text-muted">{{ search_info }}</h1>
-            {% endif %}
-            {% if manufacturer %}
-                <h1 class="text-center text-light">제조사 [ {{ manufacturer }} ]</h1>
-            {% endif %}
-            {% if category %}
-                <h1 class="text-center text-light">카테고리 [ {{ category }} ]</h1>
-            {% endif %}
-            {% if color %}
-                <h1 class="text-center text-light">색 [ {{ color }} ]</h1>
-            {% endif %}
-            {% if type %}
-                <h1 class="text-center text-light">기종 [ {{ type }} ]</h1>
-            {% endif %}
-        </header>
-
-
         <div class="container mt-5 ">
-            <div class="text-center justify-content-center" align="center">
+            <div class="text-center justify-content-center" align="center"  style="font-family: 'Noto Serif KR', serif;">
+                <span class="text-light">[카테고리]</span>
                 {% for category in categories %}
                 <span class="ml-5 mr-5 ">
                     <a href="{{category.get_absolute_url}}" class="text-decoration-none categories">{{category}}
@@ -35,10 +16,43 @@
                 {% endfor %}
             </div>
         </div>
+        <div class="container mt-5 ">
+            <div class="text-center justify-content-center" align="center" style="font-family: 'Noto Serif KR', serif;">
+                <span class="text-light">[제조사]</span>
+                {% for manufacturer in manufacturers %}
+                <span class="ml-5 mr-5 ">
+                    <a href="{{manufacturer.get_absolute_url}}" class="text-decoration-none categories">
+                        {{manufacturer}} ({{manufacturer.product_set.count}})</a>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="container mt-5">
+            {% if search_info %}
+                <h1 class="text-muted">{{ search_info }}</h1>
+            {% endif %}
+            {% if manufacturer %}
+                <h1 class="text-center text-light categories">제조사 [ {{ manufacturer }} ]</h1>
+            {% endif %}
+            {% if category %}
+                <h1 class="text-center text-light categories">카테고리 [ {{ category }} ]</h1>
+            {% endif %}
+            {% if color %}
+                <h1 class="text-center text-light categories">색 [ {{ color }} ]</h1>
+            {% endif %}
+            {% if type %}
+                <h1 class="text-center text-light categories">기종 [ {{ type }} ]</h1>
+            {% endif %}
+        </header>
+
+
+
 
 {% if product_list.exists %}
 <!-- Section-->
-        <section class="py-5">
+        <section class="py-3">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
                     {% for p in product_list %}
@@ -55,9 +69,6 @@
                                        href="{{p.manufacturer.get_absolute_url}}" style="color: #c95020;">
                                     {{ p.manufacturer | upper }}
                                     </a>
-                                    {% if product.category %}
-                                        <p><a href="{{product.category.get_absolute_url}}" class="text-decoration-none categories mb-10" >{{ product.category }}</a></p>
-                                    {% endif %}
                                     <!-- Product name -->
                                     <h5 class="fw-bolder">
                                         <a href="{{ p.get_absolute_url }}" class="text-decoration-none mb-2">{{ p.title }}</a>
@@ -66,6 +77,9 @@
                                     <p class="mb-2">{{ p.hook_text }}</p>
                                     <!-- Product price -->
                                     <p class="mb-2">{{ p.price }}원</p>
+                                    {% if p.category %}
+                                        <p><a href="{{p.category.get_absolute_url}}" class="text-decoration-none categories" >[{{ p.category }}]</a></p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -77,6 +91,7 @@
 {% else %}
     <h3>아직 게시물이 없습니다.</h3>
 {% endif %}
+
 
 <!-- Pagination-->
 	{% if is_paginated %}
@@ -97,6 +112,8 @@
 		</ul>
 	</nav>
     {% endif %}
+
+
 
 
         <!-- 등록 버튼 -->

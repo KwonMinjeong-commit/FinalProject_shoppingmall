@@ -7,8 +7,32 @@
 {% endblock %}
 
 {% block main_area %}
+ <div class="container mt-5 ">
+            <div class="text-center justify-content-center" align="center"  style="font-family: 'Noto Serif KR', serif;">
+                <span class="text-light">[카테고리]</span>
+                {% for category in categories %}
+                <span class="ml-5 mr-5 ">
+                    <a href="{{category.get_absolute_url}}" class="text-decoration-none categories">{{category}}
+                        ({{category.product_set.count}})</a>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container mt-5 mb-5">
+            <div class="text-center justify-content-center" align="center" style="font-family: 'Noto Serif KR', serif;">
+                <span class="text-light">[제조사]</span>
+                {% for manufacturer in manufacturers %}
+                <span class="ml-5 mr-5 ">
+                    <a href="{{manufacturer.get_absolute_url}}" class="text-decoration-none categories">
+                        {{manufacturer}} ({{manufacturer.product_set.count}})</a>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+
+
     <!-- Product section-->
-    <section class="py-2">
+    <section class="py-2 mt-5">
         <div class="container px-4 px-lg-5 my-3">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
