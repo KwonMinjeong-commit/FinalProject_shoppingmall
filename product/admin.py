@@ -2,9 +2,6 @@ from django.contrib import admin
 from .models import Product, Category, Manufacturer, Color, Type, Comment
 
 # Register your models here.
-class ProductAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug' : ('title',)}
-
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
 
@@ -17,7 +14,7 @@ class ColorAdmin(admin.ModelAdmin):
 class TypeAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('type',)}
 
-admin.site.register(Product, ProductAdmin)
+admin.site.register(Product)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Manufacturer, ManufacturerAdmin)
 admin.site.register(Color, ColorAdmin)

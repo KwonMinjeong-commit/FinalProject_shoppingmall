@@ -53,8 +53,6 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=30)  # 상품명
-    slug = models.SlugField(max_length=200, null=True, unique=True, allow_unicode=True)
-
     hook_text = models.CharField(max_length=100, blank=True)  # 간단 설명
     content = models.TextField(null=True)    # 상품 설명
     price = models.IntegerField()  # 가격 (숫자형식)
@@ -72,7 +70,7 @@ class Product(models.Model):
         return f'[{self.pk}] {self.title} :: {self.price}원 ㆍㆍㆍ {self.manufacturer}'
 
     def get_absolute_url(self):
-        return f'/product/{self.slug}/'
+        return f'/product/{self.pk}/'
 
 class Comment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -85,7 +83,7 @@ class Comment(models.Model):
         return f'{self.author} : {self.content}'
 
     def get_absolute_url(self):
-        return f'{self.prouct.get_absolute_url()}#comment-{self.pk}' # admin에서 View On Site 시 게시물을 보여주는 것이 아닌 게시물의 댓글을 보여줌
+        return f'{self.product.get_absolute_url()}#comment-{self.pk}' # admin에서 View On Site 시 게시물을 보여주는 것이 아닌 게시물의 댓글을 보여줌
 
     def get_avatar_url(self):
         if self.author.socialaccount_set.exists():
