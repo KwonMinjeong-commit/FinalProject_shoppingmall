@@ -41,6 +41,7 @@ class ProductCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class ProductList(ListView):
     model = Product
     ordering = '-pk'
+    paginate_by = 9
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductList,self).get_context_data()
@@ -128,3 +129,11 @@ def new_comment(request,pk):
     else:  # 로그인 안 한 사용자
         raise PermissionDenied
 
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    product = comment.product
+    if request.user.is_authenticated and request.user == comment.author:
+        comment.delete()
+        return redirect(product.get_absolute_url())
+    else:
+        PermissionDenied
