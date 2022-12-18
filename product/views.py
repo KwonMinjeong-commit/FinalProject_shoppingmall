@@ -151,3 +151,17 @@ def delete_comment(request, pk):
         return redirect(product.get_absolute_url())
     else:
         PermissionDenied
+
+def scrap(request, pk):
+    product = get_object_or_404(Product, pk=pk) # pk값에 해당하는 게시물 받아옴
+    user = request.user
+    if user in product.scrap.all():     # 요청 유저가 이미 스크랩을 했으면
+        product.scrap.remove(user)  # 유저 삭제
+    else: # 스크랩을 아직 안한 유저라면
+        product.scrap.add(user)     # 스크랩 목록에 요청 유저 추가
+    return redirect('product_detail', pk)
+
+
+def scrap_list(request):
+    user = request.user
+    return render(request, 'mypage.html', {'user':user})

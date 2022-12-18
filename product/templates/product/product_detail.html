@@ -58,14 +58,31 @@
                             </select>
                         </div>
                     </div>
-
                     {% endif %}
+
+
                     <div class="d-flex">
                         <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+
                         <button class="btn btn-outline-dark flex-shrink-0" type="button">
                             <i class="bi-cart-fill me-1"></i>
                             Add to cart
-                        </button>
+                        </button> <br>
+                         <!--스크랩-->
+                            {% if user.is_authenticated %}
+                                <button type="button" class="btn ml-auto" style="background-color: #fff;">
+                                    {% if user in product.scrap.all %}
+                                        <a href="{% url 'scrap' pk=product.pk %}">
+                                            <i class="fa-solid fa-heart" style="color: #c95020;"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'scrap' pk=product.pk %}">
+                                            <i class="fa-regular fa-heart" style="color: #c95020;"></i>
+                                        </a>
+                                    {% endif %}
+                                </button>
+                            {% endif %}
+
                     </div>
                 </div>
             </div>

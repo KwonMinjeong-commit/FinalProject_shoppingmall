@@ -13,8 +13,9 @@ urlpatterns = [
     path('manufacturer/<str:slug>/', views.manufacturer_page),  # 제조사 페이지
 
     path('<int:pk>/new_comment/', views.new_comment),   # 댓글 등록 페이지
+    path('scrap/<int:pk>/', views.scrap, name="scrap"),
 
     path('', views.ProductList.as_view()),  # 상품 목록 페이지
-    path('<int:pk>/', views.ProductDetail.as_view()),  # 상품 상세 페이지
+    path('<int:pk>/', views.ProductDetail.as_view(), name="product_detail"),  # 상품 상세 페이지
 
 ]

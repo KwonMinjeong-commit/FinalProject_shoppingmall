@@ -54,7 +54,7 @@ class Category(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=30)  # 상품명
     hook_text = models.CharField(max_length=100, blank=True)  # 간단 설명
-    content = models.TextField(null=True)    # 상품 설명
+    content = models.TextField(default = '')
     price = models.IntegerField()  # 가격 (숫자형식)
     image = models.ImageField(upload_to='product/images/%Y/%m/%d/', blank=True)     # 이미지
 
@@ -64,6 +64,9 @@ class Product(models.Model):
 
     colors = models.ManyToManyField(Color, blank=True)
     types = models.ManyToManyField(Type, blank=True)
+
+    scrap = models.ManyToManyField(User, blank=True, related_name='scrap_name')
+    count = models.IntegerField(default=0)
 
 
     def __str__(self):
