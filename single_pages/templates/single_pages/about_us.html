@@ -31,12 +31,71 @@
                       Based on this, almost9 tries to give a new value of creative generosity by reinterpreting objects that we take for granted in our daily life.
               </span>
           </div>
-          <div class="row">
-              <div class=""
-          </div>
-
+          <section class="margin-for-footer">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-12">
+                          <h1 class="text-light">Product Statistics in Our Shop</h1>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-5">
+                          <div class="card" data-toggle="modal" data-target="#portfolio2">
+                              <img class="card-img-top" src="https://i.pinimg.com/originals/52/39/d4/5239d46936713fd2c4a21d3baccbd915.jpg">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
       </div>
   </section>
+  <script>
+       google.charts.load('current',{'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart2);
+
+      function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+            ['Category', 'how many'],
+            ['phone case', 10],
+            ['airpods case', 5],
+            ['grip tok', 3],
+            ['keyring', 5],
+        ]);
+        var options = {
+            chart: {
+                title: 'Product Statistics in Our Shop',
+                subtitle: 'Category',
+            }
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('mychart2'));
+        chart.draw(data, options);
+      };
+  </script>
+
+  <!-- modal 2-->
+  <div class="modal fade" id="portfolio2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel2">Product Statistics in Our Shop</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+              <div class="col-12">
+                  <div class="card-img-top" id="mychart2"></div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 
 
 
