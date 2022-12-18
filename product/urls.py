@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('search/<str:q>/', views.ProductSearch.as_view()),       # search 바 실행시 searchValue 주소로 이동
     path('delete_comment/<int:pk>/', views.delete_comment),
     path('update_comment/<int:pk>/', views.CommentUpdate.as_view()),    # 댓글 수정 페이지
     path('update_product/<int:pk>', views.ProductUpdate.as_view()),  # 상품 등록 페이지

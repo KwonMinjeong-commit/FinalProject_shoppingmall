@@ -6,9 +6,9 @@ from .forms import CommentForm
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.text import slugify
+from django.db.models import Q
 
 # Create your views here.
-
 
 class ProductUpdate(LoginRequiredMixin, UpdateView):
     model = Product
@@ -47,6 +47,20 @@ class ProductList(ListView):
         context = super(ProductList,self).get_context_data()
         context['categories'] = Category.objects.all()      # 카테고리의 모든 정보 전달
         context['no_category_post_count'] = Product.objects.filter(category=None).count
+        return context
+
+class ProductSearch(ProductList): # ListView 상속 -> post_list, post_list.html 자동 연결
+    paginate_by = None
+
+    def get_queryset(self):
+        q = self.kwargs['q']
+        product_list = Product.objects.filter(Q(title__contains=q) | Q(content__contains=q)).distinct()
+        return product_list
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'Search: {q} ({self.get_queryset().count()})'
         return context
 
 class ProductDetail(DetailView):
