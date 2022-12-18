@@ -1,5 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from django.contrib.auth.models import User
+import os
 
 # Create your models here.
 class Color(models.Model):  # 색
@@ -71,3 +73,22 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return f'/product/{self.slug}/'
+
+class Comment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.author} : {self.content}'
+
+    def get_absolute_url(self):
+        return f'{self.prouct.get_absolute_url()}#comment-{self.pk}' # admin에서 View On Site 시 게시물을 보여주는 것이 아닌 게시물의 댓글을 보여줌
+
+    def get_avatar_url(self):
+        if self.author.socialaccount_set.exists():
+            return self.author.socialaccount_set.first().get_avatar_url()
+        else:
+            return 'https://dummyimage.com/50x50/ced4da/6c757d.jpg'

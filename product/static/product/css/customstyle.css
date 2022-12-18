@@ -9,10 +9,7 @@ body {
 .menu-bar {
     cursor: pointer;
 }
-.offcanvas-backdrop {
-    background-color: #702b5f;
-    opacity: 0.3;
-}
+
 
 /* 상품 등록/수정 플로팅 버튼 */
 .floating_btn {

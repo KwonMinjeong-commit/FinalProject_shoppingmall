@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Product, Category, Manufacturer, Color, Type
+from .models import Product, Category, Manufacturer, Color, Type, Comment
 from django.core.exceptions import PermissionDenied
 from django.utils.text import slugify
 
+
 # Create your views here.
+
 class ProductUpdate(LoginRequiredMixin, UpdateView):
     model = Product
     fields = ['title', 'hook_text', 'content', 'price', 'image', 'manufacturer', 'category', 'colors', 'types']
@@ -94,3 +96,4 @@ def type_page(request, slug):
         'categories': Category.objects.all(),  # 사이드바 정상적 출력을 위해
         'no_category_post_count': Product.objects.filter(category=None).count  # 사이드바 정상적 출력을 위해
     })
+
