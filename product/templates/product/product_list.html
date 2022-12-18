@@ -25,11 +25,11 @@
         </header>
 
 
-        <div class="container mt-5">
+        <div class="container mt-5 ">
             <div class="text-center justify-content-center" align="center">
                 {% for category in categories %}
-                <span class="ml-5 mr-5">
-                    <a href="{{category.get_absolute_url}}" class="text-decoration-none">{{category}}
+                <span class="ml-5 mr-5 ">
+                    <a href="{{category.get_absolute_url}}" class="text-decoration-none categories">{{category}}
                         ({{category.product_set.count}})</a>
                 </span>
                 {% endfor %}
@@ -52,7 +52,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <a class="badge bg-light text-decoration-none link-light"
-                                       href="{{p.manufacturer.get_absolute_url}}">
+                                       href="{{p.manufacturer.get_absolute_url}}" style="color: #c95020;">
                                     {{ p.manufacturer | upper }}
                                     </a>
                                     <!-- Product name -->
