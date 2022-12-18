@@ -100,6 +100,7 @@
                     {% if product.comment_set.exists %} <!-- post.comment : 포스트 내의 필드 / post.comment_set : 포스트와 연결된 모델 -->
                     {% for comment in product.comment_set.iterator %}
                     <!-- Single comment -->
+                    <hr>
                     <div class="media d-flex" id="comment-{{comment.pk}}">
                         <img class="rounded-circle mr-3" src="{{comment.get_avatar_url}}" width="60px"/>
                         <div class="media-body ms-3">
@@ -141,7 +142,7 @@
                                 </div>
                             {% endif %}
                             <div class="fw-bold">
-                                {{comment.user.username}}
+                                {{comment.author.username}}
                                 <small class="text_muted">{{comment.created_at}}</small>
                             </div>
                             <p>{{comment.content | linebreaks}}</p>
