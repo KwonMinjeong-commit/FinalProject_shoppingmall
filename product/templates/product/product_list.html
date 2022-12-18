@@ -55,6 +55,9 @@
                                        href="{{p.manufacturer.get_absolute_url}}" style="color: #c95020;">
                                     {{ p.manufacturer | upper }}
                                     </a>
+                                    {% if product.category %}
+                                        <p><a href="{{product.category.get_absolute_url}}" class="text-decoration-none categories mb-10" >{{ product.category }}</a></p>
+                                    {% endif %}
                                     <!-- Product name -->
                                     <h5 class="fw-bolder">
                                         <a href="{{ p.get_absolute_url }}" class="text-decoration-none mb-2">{{ p.title }}</a>

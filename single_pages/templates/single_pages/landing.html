@@ -33,25 +33,26 @@
               <hr style="background: #c95020; height: 2px; border: 1;">
 
 
-              <div class="row mt-5 ml-5 margin-for-footer">
+              <div class="row mt-4 ml-5 margin-for-footer">
                   <h2 style="font-family: 'Baskervville', serif;">Recent Products</h2>
                       {% for product in recent_products %}
                       <div class="card mt-1 mx-0">
-                          <div class="card-body">
-                              <div class="row">
-                                 <div class="col-3">
-                                      <img src="{{product.image.url}}" class="mr-1 rounded-circle recent">
-                                  </div>
-                                  <div class="col-8">
-                                      <h6>
-                                          <a href="{{product.get_absolute_url}}" class="text-decoration-none text-dark">
-                                             {{product.title}}
-                                          </a>
-                                      </h6>
-                                  </div>
-                              </div>
-
-                          </div>
+                           <a href="{{product.get_absolute_url}}" class="text-decoration-none text-dark">
+                               <div class="card-body">
+                                   <div class="row">
+                                       <div class="col-3">
+                                           <img src="{{product.image.url}}" class="mr-1 rounded-circle recent">
+                                       </div>
+                                       <div class="col-8" style="font-family: 'Noto Serif KR', serif;">
+                                           <h6>{{product.title}}</h6>
+                                           <h7>{{product.price}}원</h7>
+                                           {% if product.category %}
+                                           <p style="color: #c95020;">{{ product.category }}</p>
+                                           {% endif %}
+                                       </div>
+                                   </div>
+                               </div>
+                           </a>
                       </div>
                       {% endfor %}
               </div>
