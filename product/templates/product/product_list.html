@@ -59,9 +59,11 @@
                     <div class="col mb-5">
                         <div class="card h-100" id="product-{{p.pk}}">
                             <!-- Product image-->
+                            {% if p.image %}
                             <a href="{{ p.get_absolute_url }}">
                                 <img class="card-img-top" id="list_img" src="{{ p.image.url }}" alt="상품 이미지" />
                             </a>
+                            {% endif %}
                             <!-- Product details -->
                             <div class="card-body p-4">
                                 <div class="text-center">

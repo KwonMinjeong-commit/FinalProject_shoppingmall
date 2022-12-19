@@ -54,9 +54,9 @@ class Category(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=30)  # 상품명
     hook_text = models.CharField(max_length=100, blank=True)  # 간단 설명
-    content = models.TextField(default = '')
+    content = models.TextField(default='')
     price = models.IntegerField()  # 가격 (숫자형식)
-    image = models.ImageField(upload_to='product/images/%Y/%m/%d/', blank=True)     # 이미지
+    image = models.ImageField(upload_to='product/images/%Y/%m/%d/', blank=True, null=True)     # 이미지
 
 
     manufacturer = models.ForeignKey(Manufacturer, null=True, on_delete=models.SET_NULL)  # 제조사

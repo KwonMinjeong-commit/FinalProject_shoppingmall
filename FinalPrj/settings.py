@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'crispy_forms',
 
-
     'rest_framework',
     'allauth',
     'allauth.account',
@@ -87,7 +86,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True  # 이메일 주소 반드시 받도록
 ACCOUNT_EMAIL_VERIFICATION = 'none'     # 이메일 검증은 x
-LOGIN_REDIRECT_URL = '/product/'
+LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'FinalPrj.wsgi.application'
 
